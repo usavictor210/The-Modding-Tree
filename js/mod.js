@@ -1,8 +1,8 @@
 let modInfo = {
-	name: "The ??? Tree",
-	id: "mymod",
-	author: "nobody",
-	pointsName: "points",
+	name: "The Dopamine Tree",
+	id: "dopamine",
+	author: "usavictor2",
+	pointsName: "grams",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
@@ -14,13 +14,14 @@ let modInfo = {
 // Set your version in num and name
 let VERSION = {
 	num: "0.0",
-	name: "Literally nothing",
+	name: "The beginning",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.0</h3><br>
-		- Added things.<br>
-		- Added stuff.`
+		- Going to learn vue<br>
+		- Added some stupid stuff<br>
+		- Bruh Moment`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -34,7 +35,7 @@ function getStartPoints(){
 
 // Determines if it should show points/sec
 function canGenPoints(){
-	return true
+	return true;
 }
 
 // Calculate points/sec!
@@ -43,7 +44,12 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
+	if (hasUpgrade('i', 11)) gain = gain.add((player.i.points.times(0.1)).add(1));
 	return gain
+}
+
+function getUpgradeEffect() {
+	return undefined;
 }
 
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values
