@@ -5,6 +5,7 @@ addLayer("i", {
     startData() { return {
         unlocked: true,
 		points: new Decimal(0),
+        time: new Decimal(0)
     }},
     color: "#2a6d96",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
@@ -24,6 +25,12 @@ addLayer("i", {
         11: {
             title: "Theorem 1",
             description: "You get more dopamine per belief.",
+            effect() {
+                return (player.i.points.times(0.1)).add(1)
+            },
+            effectDisplay() {
+                return "+" + format(this.effect())
+            },
             cost: new Decimal(1),
         },
         12: {
@@ -42,5 +49,8 @@ addLayer("i", {
     hotkeys: [
         {key: "i", description: "I: Reset (incentive layer)", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return true}
+    layerShown(){return true},
+    automate() {
+        player.i.time = player.i.time.add(0.05)
+    }
 })
